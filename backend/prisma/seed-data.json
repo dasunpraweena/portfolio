@@ -1,0 +1,669 @@
+{
+  "profile": {
+    "name": "Dasun Praweena Jayasinghe",
+    "email": "dasunpraveena@gmail.com",
+    "headline": "Software Engineering Undergraduate",
+    "heroTitle": [
+      "Ideas to code.",
+      "Code to impact."
+    ],
+    "introduction": "An aspiring software engineer at Sabaragamuwa University of Sri Lanka. I turn curiosity into practical digital solutions, one thoughtful project at a time.",
+    "aboutTitle": [
+      "Still learning.",
+      "Already building."
+    ],
+    "about": [
+      "I'm Dasun Praweena Jayasinghe, a Software Engineering undergraduate at the Faculty of Computing, Sabaragamuwa University of Sri Lanka.",
+      "I enjoy the process of turning a problem into something useful: understanding the need, exploring the design, and bringing it to life through code. Academic and collaborative projects are where I put those ideas into practice.",
+      "My goal is to grow into a thoughtful software engineer, contribute to a team, and keep learning the tools that help solve real-world problems."
+    ],
+    "values": [
+      "Practical problem-solving",
+      "Team collaboration",
+      "Continuous learning",
+      "Thoughtful development"
+    ],
+    "location": "Sri Lanka",
+    "availability": "Let's talk about opportunities",
+    "status": "PUBLISHED"
+  },
+  "settings": {
+    "title": "Dasun Praweena ? Ideas to code. Code to impact.",
+    "description": "Dasun Praweena Jayasinghe ? Software Engineering undergraduate at Sabaragamuwa University of Sri Lanka. Projects, skills, and a growing journey in software.",
+    "defaultTheme": "dark",
+    "showAvailability": true,
+    "sectionOrder": [
+      "home",
+      "work",
+      "about",
+      "skills",
+      "learning",
+      "journey",
+      "contact"
+    ],
+    "sectionCopy": {
+      "hero": [
+        "Hi, I'm Dasun Praweena Jayasinghe",
+        "Ideas to code.",
+        "Code to impact.",
+        "Software Engineering Undergraduate",
+        "An aspiring software engineer at ",
+        "Sabaragamuwa University of Sri Lanka.",
+        " I turn curiosity into practical digital solutions, one thoughtful project at a time.",
+        "Explore my work ",
+        "Email",
+        "The builder's mindset / 01",
+        "✳",
+        "BUILD. LEARN. REPEAT.",
+        "Curiosity, compiled.",
+        "mindset.js",
+        "const",
+        " developer = {",
+        "  curious: ",
+        "true",
+        ",",
+        "  learning: ",
+        "\"always\"",
+        ",",
+        "  nextStep: ",
+        "\"build\"",
+        "};",
+        "SOFTWARE × PURPOSE",
+        "DESIGNED TO KEEP GROWING",
+        "Based in Sri Lanka",
+        "Growing through learning & collaboration",
+        "Scroll to explore ",
+        "My everyday",
+        "building blocks",
+        "⚛",
+        "React",
+        "JS",
+        "JavaScript",
+        "⬡",
+        "Node.js",
+        "MySQL",
+        "C#",
+        "C Sharp",
+        "Git & GitHub"
+      ],
+      "about": [
+        "dp",
+        "✳",
+        "CURIOUS MIND.",
+        "COLLABORATIVE SPIRIT.",
+        "SABARAGAMUWA",
+        "UNIVERSITY · LK",
+        "02 /",
+        "A little about me",
+        "Still learning.",
+        "Already building.",
+        "I'm ",
+        "Dasun Praweena Jayasinghe",
+        ", a Software Engineering undergraduate at the Faculty of Computing, Sabaragamuwa University of Sri Lanka.",
+        "I enjoy the process of turning a problem into something useful: understanding the need, exploring the design, and bringing it to life through code. Academic and collaborative projects are where I put those ideas into practice.",
+        "My goal is to grow into a thoughtful software engineer, contribute to a team, and keep learning the tools that help solve real-world problems.",
+        "Practical problem-solving",
+        "Team collaboration",
+        "Continuous learning",
+        "Thoughtful development",
+        "Let's connect "
+      ],
+      "skills": [
+        "03 /",
+        "The toolkit",
+        "Good ideas need",
+        "the right tools.",
+        "A growing foundation across the development stack, built through coursework and hands-on practice.",
+        "Skills are grouped by area. Explore my next steps in the ",
+        "Currently Learning section ↗",
+        "."
+      ],
+      "learning": [
+        "04 /",
+        "The next things I'm building on",
+        "Currently Learning",
+        ".",
+        "The topics on my desk right now. A look at what I'm exploring, what I'm practising, and where I want to go next.",
+        "Learning in progress",
+        "Curiosity is part of the process.",
+        "See how I got here "
+      ],
+      "journey": [
+        "05 /",
+        "My journey",
+        "Every chapter builds",
+        " the next.",
+        "From starting my degree to finding my direction in software engineering. Follow the milestones along the way.",
+        "My foundation",
+        "Where I am now",
+        "My next goal",
+        "A path of learning, practice & possibility",
+        "Follow 01 → 06",
+        "01",
+        "The starting point",
+        "University",
+        "Started my Software",
+        " Engineering degree.",
+        "Sabaragamuwa University of Sri Lanka, Faculty of Computing. The beginning of my journey into building software.",
+        "Undergraduate",
+        "Academic foundation",
+        "02",
+        "Learning the fundamentals",
+        "Foundations",
+        "Turned theory",
+        " into code.",
+        "Building my foundation in programming, object-oriented thinking, databases, algorithms, and computer networks.",
+        "Programming",
+        "Problem-solving",
+        "03",
+        "Building together",
+        "Academic projects",
+        "Started building",
+        " with a team.",
+        "Putting ideas into practice through university projects, Git collaboration, documentation, testing, and demonstrations.",
+        "Explore my projects ",
+        "04",
+        "A broader perspective",
+        "Beyond the classroom",
+        "Connected learning",
+        " with the industry.",
+        "Exploring how software teams work through an industry visit to Bhasha Lanka, alongside technical presentations.",
+        "University activity",
+        "Industry exposure",
+        "05",
+        "You are here",
+        "My current chapter",
+        "Keep learning.",
+        " Keep building.",
+        "Exploring Linux, Docker, Flutter, and cybersecurity while continuing my degree and academic project work.",
+        "What I'm learning now ",
+        "06",
+        "The next destination",
+        "Future goal",
+        "Begin my professional",
+        " chapter.",
+        "My next goal is an internship: learning from an experienced team and growing into a software engineering role.",
+        "Let's talk about opportunities ",
+        "✳",
+        "A journey in progress. The next destination is a goal I'm working towards.",
+        "Certifications & achievements",
+        "Verified certificates and supporting links will appear here when added.",
+        "A closer look at my journey.",
+        "Education, projects, and skills — together in one document."
+      ],
+      "contact": [
+        "06 /",
+        "Start a conversation",
+        "Let's talk about opportunities",
+        "Something in mind?",
+        "Let's build it.",
+        "Have a project idea, internship opportunity, or just want to talk about technology? I'd love to hear from you.",
+        "dasunpraveena@gmail.com ",
+        "Your name",
+        "Email address",
+        "Subject",
+        "Your message",
+        "Create email draft ",
+        "Opens your email app with a draft. You review and send it there."
+      ],
+      "footer": [
+        "dasun",
+        ".",
+        "Dasun Praweena Jayasinghe · Aspiring Software Engineer",
+        "Projects",
+        "About",
+        "Skills",
+        "Learning",
+        "Journey",
+        "Contact",
+        "Email ↗",
+        "© ",
+        "2026",
+        " Dasun Praweena Jayasinghe",
+        "Built with curiosity ",
+        "✳",
+        " Made to grow."
+      ]
+    },
+    "cvPublished": false
+  },
+  "projects": [
+    {
+      "slug": "marketplace",
+      "name": "Student Marketplace",
+      "type": "Web & Mobile",
+      "category": "WEB",
+      "short": "A university-focused space for products, bike rentals, lost and found, and student services.",
+      "tags": [
+        "University marketplace",
+        "Mobile concept"
+      ],
+      "visual": "market",
+      "workKind": "CONCEPT",
+      "verified": false,
+      "problem": "Students need a convenient way to discover products, rentals, lost items, and useful services within their university community.",
+      "solution": "A university marketplace that brings these needs into a shared digital space.",
+      "features": [
+        "Student product listings",
+        "Bike rentals",
+        "Lost and found",
+        "Student services"
+      ],
+      "status": "DRAFT",
+      "featured": true,
+      "sortOrder": 0,
+      "technologyNames": []
+    },
+    {
+      "slug": "profix",
+      "name": "ProFix",
+      "type": "Web Platform",
+      "category": "WEB",
+      "short": "A home service booking platform designed around finding help and arranging a service.",
+      "tags": [
+        "Home services",
+        "Booking platform"
+      ],
+      "visual": "profix",
+      "workKind": "CONCEPT",
+      "verified": false,
+      "problem": "Finding and arranging a home service can involve disconnected searches and conversations.",
+      "solution": "A home service booking platform that connects service discovery with a clear booking experience.",
+      "features": [
+        "Home service discovery",
+        "Service booking",
+        "Space for provider information"
+      ],
+      "status": "DRAFT",
+      "featured": true,
+      "sortOrder": 1,
+      "technologyNames": []
+    },
+    {
+      "slug": "supermarket",
+      "name": "Supermarket Information System",
+      "type": "Desktop Software",
+      "category": "SOFTWARE",
+      "short": "An academic information system using C# and MySQL to explore business data and application development.",
+      "tags": [
+        "C#",
+        "MySQL"
+      ],
+      "visual": "pos",
+      "workKind": "ACADEMIC",
+      "verified": false,
+      "problem": "Supermarket information needs to be organised and made accessible through a structured system.",
+      "solution": "A C# application supported by a MySQL database.",
+      "features": [
+        "Structured business information",
+        "Relational data modelling",
+        "C# application interface"
+      ],
+      "status": "DRAFT",
+      "featured": true,
+      "sortOrder": 2,
+      "technologyNames": [
+        "C#",
+        "MySQL"
+      ]
+    },
+    {
+      "slug": "analytics",
+      "name": "Student Performance Analytics",
+      "type": "Data Analysis",
+      "category": "DATA",
+      "short": "Exploring student performance through statistical analysis and presenting meaningful findings.",
+      "tags": [
+        "SPSS",
+        "Statistical analysis"
+      ],
+      "visual": "data",
+      "workKind": "CONCEPT",
+      "verified": false,
+      "problem": "Student performance data needs to be examined carefully to understand relationships between variables.",
+      "solution": "Statistical analysis using SPSS, with results presented through clear summaries and visualisations.",
+      "features": [
+        "Exploratory analysis",
+        "Statistical investigation",
+        "Visual presentation of findings"
+      ],
+      "status": "DRAFT",
+      "featured": true,
+      "sortOrder": 3,
+      "technologyNames": [
+        "SPSS"
+      ]
+    },
+    {
+      "slug": "house",
+      "name": "House Service Booking System",
+      "type": "Web Platform",
+      "category": "WEB",
+      "short": "A location-based service booking concept that helps people discover relevant home services.",
+      "tags": [
+        "Location-based",
+        "Service booking"
+      ],
+      "visual": "service",
+      "workKind": "CONCEPT",
+      "verified": false,
+      "problem": "People looking for home services need to find options relevant to their location.",
+      "solution": "A booking system with location-based service discovery.",
+      "features": [
+        "Location-based discovery",
+        "Service information",
+        "Booking experience"
+      ],
+      "status": "DRAFT",
+      "featured": false,
+      "sortOrder": 4,
+      "technologyNames": []
+    },
+    {
+      "slug": "rocket",
+      "name": "Rocket Landing Simulation",
+      "type": "Console Application",
+      "category": "SOFTWARE",
+      "short": "A C# console application exploring control flow and the logic behind a simulated rocket landing.",
+      "tags": [
+        "C#",
+        "Console application"
+      ],
+      "visual": "rocket",
+      "workKind": "CONCEPT",
+      "verified": false,
+      "problem": "A rocket landing scenario provides a practical way to explore programming decisions and simulation logic.",
+      "solution": "A console-based rocket landing simulation written in C#.",
+      "features": [
+        "Console interaction",
+        "Landing simulation",
+        "Conditional control flow"
+      ],
+      "status": "DRAFT",
+      "featured": false,
+      "sortOrder": 5,
+      "technologyNames": [
+        "C#"
+      ]
+    }
+  ],
+  "skillCategories": [
+    {
+      "slug": "programming-languages",
+      "name": "Programming languages",
+      "icon": "code",
+      "status": "PUBLISHED",
+      "sortOrder": 0,
+      "skills": [
+        "Java",
+        "C",
+        "C#",
+        "JavaScript"
+      ]
+    },
+    {
+      "slug": "frontend-development",
+      "name": "Frontend development",
+      "icon": "layers",
+      "status": "PUBLISHED",
+      "sortOrder": 1,
+      "skills": [
+        "HTML",
+        "CSS",
+        "React",
+        "Tailwind CSS",
+        "Bootstrap"
+      ]
+    },
+    {
+      "slug": "backend-development",
+      "name": "Backend development",
+      "icon": "terminal",
+      "status": "PUBLISHED",
+      "sortOrder": 2,
+      "skills": [
+        "Node.js",
+        "Express.js",
+        "REST APIs"
+      ]
+    },
+    {
+      "slug": "databases",
+      "name": "Databases",
+      "icon": "database",
+      "status": "PUBLISHED",
+      "sortOrder": 3,
+      "skills": [
+        "MySQL",
+        "SQL",
+        "Database Design"
+      ]
+    },
+    {
+      "slug": "tools-workflow",
+      "name": "Tools & workflow",
+      "icon": "tool",
+      "status": "PUBLISHED",
+      "sortOrder": 4,
+      "skills": [
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Postman"
+      ]
+    }
+  ],
+  "learningTopics": [
+    {
+      "slug": "linux",
+      "icon": "terminal",
+      "title": "Linux & Ubuntu",
+      "category": "Systems",
+      "tone": "green",
+      "summary": "Getting comfortable with the command line and the foundations of a Linux environment.",
+      "focus": [
+        "Shell commands",
+        "Files & permissions"
+      ],
+      "goal": "Practise a small system task using the terminal, file permissions, and helpful command documentation.",
+      "status": "PUBLISHED",
+      "sortOrder": 0
+    },
+    {
+      "slug": "docker",
+      "icon": "box",
+      "title": "Docker",
+      "category": "DevOps",
+      "tone": "blue",
+      "summary": "Exploring how containers make applications easier to run in a consistent development environment.",
+      "focus": [
+        "Images & containers",
+        "Development workflows"
+      ],
+      "goal": "Containerise a small application and practise running it with ports and a development volume.",
+      "status": "PUBLISHED",
+      "sortOrder": 1
+    },
+    {
+      "slug": "flutter",
+      "icon": "phone",
+      "title": "Flutter",
+      "category": "Mobile",
+      "tone": "purple",
+      "summary": "Learning the building blocks of mobile interfaces and application development with Flutter.",
+      "focus": [
+        "Widgets & layouts",
+        "App structure"
+      ],
+      "goal": "Create a small mobile interface and understand how its screens and application logic fit together.",
+      "status": "PUBLISHED",
+      "sortOrder": 2
+    },
+    {
+      "slug": "security",
+      "icon": "shield",
+      "title": "Cybersecurity",
+      "category": "Security",
+      "tone": "amber",
+      "summary": "Building an understanding of security fundamentals and how they relate to software development.",
+      "focus": [
+        "Security principles",
+        "Threats & vulnerabilities"
+      ],
+      "goal": "Recognise common security risks and practise applying basic security thinking to an academic project.",
+      "status": "PUBLISHED",
+      "sortOrder": 3
+    }
+  ],
+  "milestones": [
+    {
+      "slug": "university",
+      "category": "University",
+      "title": "Started my Software Engineering degree.",
+      "description": "Sabaragamuwa University of Sri Lanka, Faculty of Computing. The beginning of my journey into building software.",
+      "routeLabel": "The starting point",
+      "icon": "school",
+      "stage": "FOUNDATION",
+      "tags": [
+        "Undergraduate",
+        "Academic foundation"
+      ],
+      "linkSection": null,
+      "linkLabel": null,
+      "status": "PUBLISHED",
+      "sortOrder": 0
+    },
+    {
+      "slug": "foundations",
+      "category": "Foundations",
+      "title": "Turned theory into code.",
+      "description": "Building my foundation in programming, object-oriented thinking, databases, algorithms, and computer networks.",
+      "routeLabel": "Learning the fundamentals",
+      "icon": "code",
+      "stage": "FOUNDATION",
+      "tags": [
+        "Programming",
+        "Problem-solving"
+      ],
+      "linkSection": null,
+      "linkLabel": null,
+      "status": "PUBLISHED",
+      "sortOrder": 1
+    },
+    {
+      "slug": "team-projects",
+      "category": "Academic projects",
+      "title": "Started building with a team.",
+      "description": "Putting ideas into practice through university projects, Git collaboration, documentation, testing, and demonstrations.",
+      "routeLabel": "Building together",
+      "icon": "layers",
+      "stage": "FOUNDATION",
+      "tags": [],
+      "linkSection": "work",
+      "linkLabel": "Explore my projects",
+      "status": "PUBLISHED",
+      "sortOrder": 2
+    },
+    {
+      "slug": "industry-exposure",
+      "category": "Beyond the classroom",
+      "title": "Connected learning with the industry.",
+      "description": "Exploring how software teams work through an industry visit to Bhasha Lanka, alongside technical presentations.",
+      "routeLabel": "A broader perspective",
+      "icon": "briefcase",
+      "stage": "FOUNDATION",
+      "tags": [
+        "University activity",
+        "Industry exposure"
+      ],
+      "linkSection": null,
+      "linkLabel": null,
+      "status": "PUBLISHED",
+      "sortOrder": 3
+    },
+    {
+      "slug": "current-chapter",
+      "category": "My current chapter",
+      "title": "Keep learning. Keep building.",
+      "description": "Exploring Linux, Docker, Flutter, and cybersecurity while continuing my degree and academic project work.",
+      "routeLabel": "You are here",
+      "icon": "book",
+      "stage": "CURRENT",
+      "tags": [],
+      "linkSection": "learning",
+      "linkLabel": "What I'm learning now",
+      "status": "PUBLISHED",
+      "sortOrder": 4
+    },
+    {
+      "slug": "future-goal",
+      "category": "Future goal",
+      "title": "Begin my professional chapter.",
+      "description": "My next goal is an internship: learning from an experienced team and growing into a software engineering role.",
+      "routeLabel": "The next destination",
+      "icon": "rocket",
+      "stage": "GOAL",
+      "tags": [],
+      "linkSection": "contact",
+      "linkLabel": "Let's talk about opportunities",
+      "status": "PUBLISHED",
+      "sortOrder": 5
+    }
+  ],
+  "education": [
+    {
+      "slug": "sabaragamuwa-university",
+      "institution": "Sabaragamuwa University of Sri Lanka",
+      "faculty": "Faculty of Computing",
+      "degree": "Software Engineering degree program",
+      "studyStatus": "Undergraduate",
+      "coursework": [
+        "Data Structures and Algorithms",
+        "Database Systems",
+        "Object-Oriented Programming",
+        "Software Engineering",
+        "Computer Networks"
+      ],
+      "achievements": [],
+      "status": "PUBLISHED",
+      "sortOrder": 0
+    }
+  ],
+  "experience": [
+    {
+      "slug": "university-group-projects",
+      "title": "University group projects",
+      "category": "Academic collaboration",
+      "status": "PUBLISHED",
+      "sortOrder": 0
+    },
+    {
+      "slug": "industry-visit-to-bhasha-lanka",
+      "title": "Industry visit to Bhasha Lanka",
+      "category": "University activity",
+      "status": "PUBLISHED",
+      "sortOrder": 1
+    },
+    {
+      "slug": "technical-presentations-demonstrations",
+      "title": "Technical presentations & demonstrations",
+      "category": "Academic activity",
+      "status": "PUBLISHED",
+      "sortOrder": 2
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "GitHub",
+      "url": null,
+      "status": "PUBLISHED",
+      "sortOrder": 0
+    },
+    {
+      "platform": "LinkedIn",
+      "url": null,
+      "status": "PUBLISHED",
+      "sortOrder": 1
+    }
+  ]
+}

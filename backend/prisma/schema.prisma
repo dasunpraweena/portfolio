@@ -1,0 +1,292 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["portfolio"]
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  @@schema("portfolio")
+}
+
+enum ProjectCategory {
+  WEB
+  SOFTWARE
+  DATA
+  @@schema("portfolio")
+}
+
+enum WorkKind {
+  CONCEPT
+  ACADEMIC
+  @@schema("portfolio")
+}
+
+enum AssetKind {
+  IMAGE
+  PDF
+  @@schema("portfolio")
+}
+
+model Profile {
+  id           String @id @default("main")
+  name         String
+  email        String
+  headline     String
+  heroTitle    String[] @default([])
+  introduction String
+  aboutTitle   String[] @default([])
+  about        String[] @default([])
+  values       String[] @default([])
+  location     String
+  availability String
+  status       PublicationStatus @default(DRAFT)
+  photoAssetId String? @db.Uuid
+  photo        Asset? @relation("ProfilePhoto", fields: [photoAssetId], references: [id], onDelete: Restrict)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model SiteSettings {
+  id               String @id @default("main")
+  title            String
+  description      String
+  defaultTheme     String @default("dark")
+  showAvailability Boolean @default(true)
+  sectionOrder     String[] @default([])
+  sectionCopy      Json @default("{}")
+  internalNotes    String? // Deliberately excluded from public DTOs.
+  cvAssetId        String? @db.Uuid
+  cv               Asset? @relation("SiteCv", fields: [cvAssetId], references: [id], onDelete: Restrict)
+  cvPublished      Boolean @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model Project {
+  id                   String @id @default(uuid()) @db.Uuid
+  slug                 String @unique
+  name                 String
+  type                 String
+  category             ProjectCategory
+  short                String
+  tags                 String[] @default([])
+  visual               String
+  workKind             WorkKind @default(CONCEPT)
+  verified             Boolean @default(false)
+  implementationStatus String?
+  problem              String
+  solution             String
+  features             String[] @default([])
+  contribution         String?
+  lessons              String?
+  repositoryUrl        String?
+  demoUrl              String?
+  status               PublicationStatus @default(DRAFT)
+  featured             Boolean @default(false)
+  sortOrder            Int @default(0)
+  technologies         ProjectTechnology[]
+  screenshots          ProjectAsset[]
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  @@index([status, category, sortOrder])
+  @@schema("portfolio")
+}
+
+model Technology {
+  id        String @id @default(uuid()) @db.Uuid
+  name      String @unique
+  projects  ProjectTechnology[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model ProjectTechnology {
+  projectId    String @db.Uuid
+  technologyId String @db.Uuid
+  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Restrict)
+  sortOrder    Int @default(0)
+  @@id([projectId, technologyId])
+  @@schema("portfolio")
+}
+
+model ProjectAsset {
+  projectId    String @db.Uuid
+  assetId      String @db.Uuid
+  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  asset        Asset @relation(fields: [assetId], references: [id], onDelete: Restrict)
+  caption      String?
+  illustrative Boolean @default(false)
+  sortOrder    Int @default(0)
+  @@id([projectId, assetId])
+  @@schema("portfolio")
+}
+
+model SkillCategory {
+  id        String @id @default(uuid()) @db.Uuid
+  slug      String @unique
+  name      String
+  icon      String
+  status    PublicationStatus @default(DRAFT)
+  sortOrder Int @default(0)
+  skills    Skill[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model Skill {
+  id         String @id @default(uuid()) @db.Uuid
+  categoryId String @db.Uuid
+  category   SkillCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  name       String
+  status     PublicationStatus @default(DRAFT)
+  sortOrder  Int @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([categoryId, name])
+  @@schema("portfolio")
+}
+
+model LearningTopic {
+  id             String @id @default(uuid()) @db.Uuid
+  slug           String @unique
+  title          String
+  category       String
+  icon           String
+  tone           String
+  summary        String
+  focus          String[] @default([])
+  goal           String
+  learningStatus String @default("Currently learning")
+  status         PublicationStatus @default(DRAFT)
+  sortOrder      Int @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model JourneyMilestone {
+  id          String @id @default(uuid()) @db.Uuid
+  slug        String @unique
+  title       String
+  description String
+  category    String
+  icon        String
+  routeLabel  String
+  stage       String
+  tags        String[] @default([])
+  linkSection String?
+  linkLabel   String?
+  occurredAt  DateTime? @db.Date
+  status      PublicationStatus @default(DRAFT)
+  sortOrder   Int @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model Education {
+  id           String @id @default(uuid()) @db.Uuid
+  slug         String @unique
+  institution  String
+  faculty      String?
+  degree       String
+  studyStatus  String
+  coursework   String[] @default([])
+  achievements String[] @default([])
+  startDate    DateTime? @db.Date
+  endDate      DateTime? @db.Date
+  status       PublicationStatus @default(DRAFT)
+  sortOrder    Int @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model Experience {
+  id           String @id @default(uuid()) @db.Uuid
+  slug         String @unique
+  title        String
+  category     String
+  organisation String?
+  description  String?
+  startDate    DateTime? @db.Date
+  endDate      DateTime? @db.Date
+  status       PublicationStatus @default(DRAFT)
+  sortOrder    Int @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model Certificate {
+  id              String @id @default(uuid()) @db.Uuid
+  slug            String @unique
+  title           String
+  issuer          String
+  completedAt     DateTime? @db.Date
+  credentialId    String?
+  verificationUrl String?
+  verified        Boolean @default(false)
+  assetId         String? @db.Uuid
+  asset           Asset? @relation("CertificateFile", fields: [assetId], references: [id], onDelete: Restrict)
+  status          PublicationStatus @default(DRAFT)
+  sortOrder       Int @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model SocialLink {
+  id        String @id @default(uuid()) @db.Uuid
+  platform  String @unique
+  url       String?
+  status    PublicationStatus @default(DRAFT)
+  sortOrder Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@schema("portfolio")
+}
+
+model ContactMessage {
+  id        String @id @default(uuid()) @db.Uuid
+  name      String
+  email     String
+  subject   String
+  message   String
+  readAt    DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([createdAt])
+  @@schema("portfolio")
+}
+
+model Asset {
+  id           String @id @default(uuid()) @db.Uuid
+  kind         AssetKind
+  privatePath  String @unique
+  publicPath   String? @unique
+  originalName String
+  mimeType     String
+  sizeBytes    Int
+  sha256       String
+  width        Int?
+  height       Int?
+  uploadedBy   String @db.Uuid
+  projects     ProjectAsset[]
+  profiles     Profile[] @relation("ProfilePhoto")
+  settings     SiteSettings[] @relation("SiteCv")
+  certificates Certificate[] @relation("CertificateFile")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@schema("portfolio")
+}
