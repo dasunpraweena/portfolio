@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark light" />
+<meta name="description" content="Dasun Praweena Jayasinghe ? Software Engineering undergraduate at Sabaragamuwa University of Sri Lanka. Projects, skills, and a growing journey in software." />
+<meta name="theme-color" content="#121612" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Dasun Praweena ? Ideas to code. Code to impact.</title>
+<script>
+try {
+ const savedTheme = localStorage.getItem('dasun-portfolio-theme');
+ document.documentElement.dataset.theme = savedTheme === 'light' ? 'light' : 'dark';
+} catch { document.documentElement.dataset.theme = 'dark'; }
+document.querySelector('meta[name="theme-color"]').content = document.documentElement.dataset.theme === 'light' ? '#f4f5ed' : '#121612';
+</script>
+</head>
+<body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body>
+</html>

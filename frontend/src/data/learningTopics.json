@@ -1,0 +1,54 @@
+[
+  {
+    "id": "linux",
+    "icon": "terminal",
+    "title": "Linux & Ubuntu",
+    "category": "Systems",
+    "tone": "green",
+    "summary": "Getting comfortable with the command line and the foundations of a Linux environment.",
+    "focus": [
+      "Shell commands",
+      "Files & permissions"
+    ],
+    "goal": "Practise a small system task using the terminal, file permissions, and helpful command documentation."
+  },
+  {
+    "id": "docker",
+    "icon": "box",
+    "title": "Docker",
+    "category": "DevOps",
+    "tone": "blue",
+    "summary": "Exploring how containers make applications easier to run in a consistent development environment.",
+    "focus": [
+      "Images & containers",
+      "Development workflows"
+    ],
+    "goal": "Containerise a small application and practise running it with ports and a development volume."
+  },
+  {
+    "id": "flutter",
+    "icon": "phone",
+    "title": "Flutter",
+    "category": "Mobile",
+    "tone": "purple",
+    "summary": "Learning the building blocks of mobile interfaces and application development with Flutter.",
+    "focus": [
+      "Widgets & layouts",
+      "App structure"
+    ],
+    "goal": "Create a small mobile interface and understand how its screens and application logic fit together."
+  },
+  {
+    "id": "security",
+    "icon": "shield",
+    "title": "Cybersecurity",
+    "category": "Security",
+    "tone": "amber",
+    "summary": "Building an understanding of security fundamentals and how they relate to software development.",
+    "focus": [
+      "Security principles",
+      "Threats & vulnerabilities"
+    ],
+    "goal": "Recognise common security risks and practise applying basic security thinking to an academic project."
+  }
+]

@@ -1,0 +1,129 @@
+[
+  {
+    "id": "marketplace",
+    "name": "Student Marketplace",
+    "type": "Web & Mobile",
+    "filter": "web",
+    "short": "A university-focused space for products, bike rentals, lost and found, and student services.",
+    "tech": [
+      "University marketplace",
+      "Mobile concept"
+    ],
+    "visual": "market",
+    "initials": "SM",
+    "color": "",
+    "problem": "Students need a convenient way to discover products, rentals, lost items, and useful services within their university community.",
+    "solution": "A university marketplace that brings these needs into a shared digital space.",
+    "features": [
+      "Student product listings",
+      "Bike rentals",
+      "Lost and found",
+      "Student services"
+    ]
+  },
+  {
+    "id": "profix",
+    "name": "ProFix",
+    "type": "Web Platform",
+    "filter": "web",
+    "short": "A home service booking platform designed around finding help and arranging a service.",
+    "tech": [
+      "Home services",
+      "Booking platform"
+    ],
+    "visual": "profix",
+    "initials": "PF",
+    "color": "purple",
+    "problem": "Finding and arranging a home service can involve disconnected searches and conversations.",
+    "solution": "A home service booking platform that connects service discovery with a clear booking experience.",
+    "features": [
+      "Home service discovery",
+      "Service booking",
+      "Space for provider information"
+    ]
+  },
+  {
+    "id": "supermarket",
+    "name": "Supermarket Information System",
+    "type": "Desktop Software",
+    "filter": "software",
+    "short": "An academic information system using C# and MySQL to explore business data and application development.",
+    "tech": [
+      "C#",
+      "MySQL"
+    ],
+    "visual": "pos",
+    "initials": "SI",
+    "color": "tan",
+    "problem": "Supermarket information needs to be organised and made accessible through a structured system.",
+    "solution": "A C# application supported by a MySQL database.",
+    "features": [
+      "Structured business information",
+      "Relational data modelling",
+      "C# application interface"
+    ]
+  },
+  {
+    "id": "analytics",
+    "name": "Student Performance Analytics",
+    "type": "Data Analysis",
+    "filter": "data",
+    "short": "Exploring student performance through statistical analysis and presenting meaningful findings.",
+    "tech": [
+      "SPSS",
+      "Statistical analysis"
+    ],
+    "visual": "data",
+    "initials": "SA",
+    "color": "blue",
+    "problem": "Student performance data needs to be examined carefully to understand relationships between variables.",
+    "solution": "Statistical analysis using SPSS, with results presented through clear summaries and visualisations.",
+    "features": [
+      "Exploratory analysis",
+      "Statistical investigation",
+      "Visual presentation of findings"
+    ]
+  },
+  {
+    "id": "house",
+    "name": "House Service Booking System",
+    "type": "Web Platform",
+    "filter": "web",
+    "short": "A location-based service booking concept that helps people discover relevant home services.",
+    "tech": [
+      "Location-based",
+      "Service booking"
+    ],
+    "visual": "service",
+    "initials": "HS",
+    "color": "",
+    "problem": "People looking for home services need to find options relevant to their location.",
+    "solution": "A booking system with location-based service discovery.",
+    "features": [
+      "Location-based discovery",
+      "Service information",
+      "Booking experience"
+    ]
+  },
+  {
+    "id": "rocket",
+    "name": "Rocket Landing Simulation",
+    "type": "Console Application",
+    "filter": "software",
+    "short": "A C# console application exploring control flow and the logic behind a simulated rocket landing.",
+    "tech": [
+      "C#",
+      "Console application"
+    ],
+    "visual": "rocket",
+    "initials": "RL",
+    "color": "purple",
+    "problem": "A rocket landing scenario provides a practical way to explore programming decisions and simulation logic.",
+    "solution": "A console-based rocket landing simulation written in C#.",
+    "features": [
+      "Console interaction",
+      "Landing simulation",
+      "Conditional control flow"
+    ]
+  }
+]

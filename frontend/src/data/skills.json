@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Programming languages",
+    "icon": "code",
+    "items": [
+      "Java",
+      "C",
+      "C#",
+      "JavaScript"
+    ]
+  },
+  {
+    "name": "Frontend development",
+    "icon": "layers",
+    "items": [
+      "HTML",
+      "CSS",
+      "React",
+      "Tailwind CSS",
+      "Bootstrap"
+    ]
+  },
+  {
+    "name": "Backend development",
+    "icon": "terminal",
+    "items": [
+      "Node.js",
+      "Express.js",
+      "REST APIs"
+    ]
+  },
+  {
+    "name": "Databases",
+    "icon": "database",
+    "items": [
+      "MySQL",
+      "SQL",
+      "Database Design"
+    ]
+  },
+  {
+    "name": "Tools & workflow",
+    "icon": "tool",
+    "items": [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman"
+    ]
+  }
+]
