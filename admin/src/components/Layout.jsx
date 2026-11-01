@@ -1,0 +1,22 @@
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
+import { menu } from '../data/resources';
+import { useResource } from '../hooks/useResource';
+import { useStudio } from './StudioProvider';
+import { ThemeToggle } from '../pages/Login';
+import Icon from './Icon';
+export default function Layout() {
+  const { api, session, signOut } = useAuth(), { version, confirm } = useStudio();
+  const [open, setOpen] = useState(false);
+  const [mobile, setMobile] = useState(() => matchMedia('(max-width:700px)').matches);
+  const sidebar = useRef(null), toggle = useRef(null);
+  const location = useLocation();
+  useEffect(() => { const media = matchMedia('(max-width:700px)'); const change = () => setMobile(media.matches); media.addEventListener('change', change); return () => media.removeEventListener('change', change); }, []);
+  useEffect(() => { if (open && mobile) sidebar.current?.querySelector('nav a')?.focus({ preventScroll: true }); }, [open, mobile]);
+  const current = menu.find(([path]) => location.pathname === '/' + path || path === 'skills' && location.pathname === '/skill-categories') || menu[0];
+  const counts = useResource(async signal => { const [projects, messages] = await Promise.all([api.list('projects', { limit: '1' }, { signal }), api.list('messages', { limit: '1' }, { signal })]); return { projects: projects.meta.total, messages: messages.meta.total }; }, [version]);
+  useEffect(() => { setOpen(false); document.title = 'Portfolio Studio — ' + current[2]; document.getElementById('admin-content')?.focus({ preventScroll: true }); }, [location.pathname]);
+  useEffect(() => { if (!open) return; const close = event => { if (event.key === 'Escape') { setOpen(false); toggle.current?.focus(); } if (event.type === 'pointerdown' && !sidebar.current?.contains(event.target) && !toggle.current?.contains(event.target)) setOpen(false); }; document.addEventListener('keydown', close); document.addEventListener('pointerdown', close); return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', close); }; }, [open]);
+  return <><a className="skip-link" href="#admin-content">Skip to content</a><aside inert={mobile && !open} aria-hidden={mobile && !open ? true : undefined} ref={sidebar} className={'admin-sidebar' + (open ? ' open' : '')} id="admin-sidebar"><Link className="brand" to="/overview"><span className="brand-mark">d p</span>Portfolio studio<span className="brand-dot">.</span></Link><p className="mono">Your content workspace</p><nav className="admin-nav" aria-label="Dashboard sections">{menu.map(([path, icon, label]) => <NavLink key={path} to={'/' + path} className={({ isActive }) => isActive || path === 'skills' && location.pathname === '/skill-categories' ? 'active' : ''}><Icon name={icon} />{label}{counts.status === 'success' && ['projects', 'messages'].includes(path) && <span className="nav-count">{counts.data[path]}</span>}</NavLink>)}</nav><div className="sidebar-bottom"><div className="sidebar-person"><span className="avatar">{session.user.email?.slice(0, 2).toUpperCase()}</span><div className="sidebar-email">{session.user.email}<small>Portfolio administrator</small></div></div><button className="sidebar-logout" onClick={async () => { if (await confirm({ title: 'Sign out?', message: 'Unsaved form edits will be discarded. Your saved content stays intact.', label: 'Sign out' })) signOut(); }}><Icon name="close" />Sign out</button></div></aside><div className="admin-main"><header className="admin-topbar"><div className="menu-holder"><button ref={toggle} className="round-btn admin-menu-toggle" aria-label={open ? 'Close dashboard navigation' : 'Open dashboard navigation'} aria-expanded={open} aria-controls="admin-sidebar" onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'menu'} /></button><div className="breadcrumbs"><span>Workspace</span><span>/</span><strong>{current[2]}</strong></div></div><div className="admin-topbar-right"><ThemeToggle /><a className="btn" href="http://localhost:5173" target="_blank" rel="noopener noreferrer">View portfolio <Icon name="up-right" /></a></div></header><main className="admin-content" id="admin-content" tabIndex={-1}><Outlet /><p className="admin-footer-note">PORTFOLIO STUDIO · YOUR SAVED CONTENT WORKSPACE</p></main></div></>;
+}
