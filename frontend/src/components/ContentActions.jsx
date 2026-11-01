@@ -1,6 +1,5 @@
 import Icon from './Icon';
 import { usePortfolio } from './PortfolioProvider';
-import { profile } from '../data/profile';
 
 export function CvButton({ label = 'View / Download CV' }) {
   const { setDialog } = usePortfolio();
@@ -8,9 +7,15 @@ export function CvButton({ label = 'View / Download CV' }) {
 }
 
 export function SocialLink({ platform, withIcon = 'false', tinyArrow = 'false' }) {
-  const { setDialog } = usePortfolio();
-  const content = <>{withIcon === 'true' && <Icon name={platform.toLowerCase()} />}{platform} <Icon name="up-right" style={tinyArrow === 'true' ? { width: 10, height: 10 } : undefined} /></>;
-  return profile.socials[platform] ? <a className="social-link" href={profile.socials[platform]} target="_blank" rel="noopener noreferrer">{content}</a> : <button className="social-link" onClick={() => setDialog({ title: `Find me on ${platform}.`, kicker: 'Profile link to add', message: `My exact ${platform} profile URL has not been supplied yet. You can reach me by email in the meantime.` })}>{content}</button>;
+  const { setDialog, portfolio } = usePortfolio();
+  const url = portfolio?.socialLinks.find(link => link.platform === platform)?.url;
+  const content = <>{withIcon === 'true' && <Icon name={['GitHub', 'LinkedIn'].includes(platform) ? platform.toLowerCase() : 'globe'} />}{platform} <Icon name="up-right" style={tinyArrow === 'true' ? { width: 10, height: 10 } : undefined} /></>;
+  return url ? <a className="social-link" href={url} target="_blank" rel="noopener noreferrer">{content}</a> : <button className="social-link" onClick={() => setDialog({ title: `Find me on ${platform}.`, kicker: 'Profile link to add', message: `My exact ${platform} profile URL has not been supplied yet. You can reach me by email in the meantime.` })}>{content}</button>;
+}
+
+export function SocialLinks({ withIcon = 'false', tinyArrow = 'false' }) {
+  const { portfolio } = usePortfolio();
+  return portfolio?.socialLinks.map(link => <SocialLink key={link.platform} platform={link.platform} withIcon={withIcon} tinyArrow={tinyArrow} />);
 }
 
 export function ProjectLink({ project, kind, className = '', children }) {

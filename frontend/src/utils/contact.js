@@ -1,8 +1,10 @@
-export function createEmailDraft(values, recipient) {
-  const fields = Object.fromEntries(['name', 'email', 'subject', 'message'].map(key => [key, String(values[key] || '').trim()]));
-  const missing = Object.keys(fields).find(key => !fields[key]);
-  if (missing) return { error: 'Please fill in this field.', field: missing };
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return { error: 'Please enter a valid email address.', field: 'email' };
-  const body = `Hello Dasun,\n\n${fields.message}\n\nFrom: ${fields.name}\nEmail: ${fields.email}`;
-  return { href: `mailto:${recipient}?subject=${encodeURIComponent(fields.subject)}&body=${encodeURIComponent(body)}` };
+export function validateMessage(values) {
+  const limits = { name: 100, email: 200, subject: 200, message: 5000 };
+  const data = Object.fromEntries(Object.keys(limits).map(key => [key, String(values[key] || '').trim()]));
+  for (const [field, limit] of Object.entries(limits)) {
+    if (!data[field]) return { error: 'Please fill in this field.', field };
+    if (data[field].length > limit) return { error: `Please use no more than ${limit} characters.`, field };
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return { error: 'Please enter a valid email address.', field: 'email' };
+  return { data };
 }

@@ -1,7 +1,8 @@
-import copy from '../data/copy.json';
+import { usePortfolio } from '../components/PortfolioProvider';
 import { LearningCards } from '../components/LearningContent';
 
 export default function Learning() {
+  const { copy, profile, portfolio } = usePortfolio();
   return (<>
 <section className="section learning-section" id="learning" aria-labelledby="learning-heading">
 <div className="container">

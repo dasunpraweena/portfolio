@@ -11,7 +11,7 @@ export default function ProjectCard({ project }) {
     <ProjectVisual project={project} />
     <div className="project-info"><h3><Link to={target} state={state}>{project.name}</Link></h3><span className="project-type">{project.type}</span></div>
     <p className="project-description">{project.short}</p>
-    <div className="tags">{project.tech.map(tag => <span className="tag" key={tag}>{tag}</span>)}<span className="tag">Details to verify</span></div>
+    <div className="tags">{project.tech.map(tag => <span className="tag" key={tag}>{tag}</span>)}<span className="tag">{project.verified ? 'Verified details' : 'Details to verify'}</span></div>
     <div className="project-links">
       <Link to={target} state={state}>Project notebook <Icon name="up-right" /></Link>
       <ProjectLink project={project} kind="repository"><Icon name="github" />Repository</ProjectLink>

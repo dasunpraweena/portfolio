@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { navigation } from '../data/profile';
+import { navigation } from '../data/navigation';
 import ThemeToggle from './ThemeToggle';
 import Icon from './Icon';
+import { usePortfolio } from './PortfolioProvider';
 
 export default function Navbar() {
+  const { portfolioStatus } = usePortfolio();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
   const nav = useRef(null);
@@ -27,7 +29,7 @@ export default function Navbar() {
     }, { rootMargin: '-15% 0px -65% 0px' });
     for (const [id] of navigation) { const element = document.getElementById(id); if (element) observer.observe(element); }
     return () => observer.disconnect();
-  }, [onHome]);
+  }, [onHome, portfolioStatus]);
   return <header className="site-header"><nav className="nav container" aria-label="Main navigation" ref={nav}>
     <Link className="brand" to="/#home" aria-label="Dasun portfolio home"><span className="brand-mark">d p</span>dasun<span className="brand-dot">.</span></Link>
     <div className={'nav-links' + (open ? ' open' : '')} id="nav-links">

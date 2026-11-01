@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { mockApi } from './api-fixture';
+test.beforeEach(async ({ page }) => { await mockApi(page); });
 
 test('loads all public sections without errors and keeps the admin prototype out', async ({ page }) => {
   const errors = [];
@@ -84,24 +86,6 @@ test('explains unavailable CV and social links without creating broken links', a
   await expect(page.getByRole('heading', { name: 'Find me on GitHub.' })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
-});
-
-test('validates contact fields and requests an email draft without claiming delivery', async ({ page }) => {
-  await page.goto('/#contact');
-  const submit = page.getByRole('button', { name: 'Create email draft' });
-  await submit.click();
-  expect(await page.locator('#contact-form').evaluate(form => form.checkValidity())).toBe(false);
-  await page.getByLabel('Your name').fill('  ');
-  await page.getByLabel('Email address').fill('visitor@example.com');
-  await page.getByLabel('Subject', { exact: true }).fill('Hello & ideas');
-  await page.getByLabel('Your message').fill('A project? Yes!');
-  await submit.click();
-  await expect(page.getByLabel('Your name')).toBeFocused();
-  await page.getByLabel('Your name').fill('Visitor');
-  await page.route('mailto:**', route => route.abort());
-  await submit.click();
-  await expect(page.getByRole('status')).toHaveText('Email draft requested. Review and send it in your email app.');
-  await expect(page.getByText('Opens your email app with a draft. You review and send it there.')).toBeVisible();
 });
 
 test('mobile menu opens, closes with Escape, follows sections, and updates active navigation', async ({ page }) => {

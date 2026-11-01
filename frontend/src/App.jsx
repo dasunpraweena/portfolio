@@ -6,8 +6,10 @@ import { IconDefinitions } from './components/Icon';
 import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
 import NotFound from './pages/NotFound';
+import { usePortfolio } from './components/PortfolioProvider';
 
 function ScrollManager() {
+  const { portfolioStatus } = usePortfolio();
   const location = useLocation();
   const previous = useRef(location);
   useEffect(() => {
@@ -24,7 +26,7 @@ function ScrollManager() {
       }
     });
     return () => cancelAnimationFrame(frame);
-  }, [location]);
+  }, [location, portfolioStatus]);
   return null;
 }
 
