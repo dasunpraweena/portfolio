@@ -45,9 +45,11 @@ model Profile {
   location     String
   availability String
   status       PublicationStatus @default(DRAFT)
-  photoAssetId String? @db.Uuid
-  photo        Asset? @relation("ProfilePhoto", fields: [photoAssetId], references: [id], onDelete: Restrict)
-  createdAt    DateTime @default(now())
+  photoAssetId      String? @db.Uuid
+  photo             Asset? @relation("ProfilePhoto", fields: [photoAssetId], references: [id], onDelete: Restrict)
+  aboutPhotoAssetId String? @db.Uuid
+  aboutPhoto        Asset? @relation("ProfileAboutPhoto", fields: [aboutPhotoAssetId], references: [id], onDelete: Restrict)
+  createdAt         DateTime @default(now())
   updatedAt    DateTime @updatedAt
   @@schema("portfolio")
 }
@@ -282,9 +284,10 @@ model Asset {
   width        Int?
   height       Int?
   uploadedBy   String @db.Uuid
-  projects     ProjectAsset[]
-  profiles     Profile[] @relation("ProfilePhoto")
-  settings     SiteSettings[] @relation("SiteCv")
+  projects      ProjectAsset[]
+  profiles      Profile[] @relation("ProfilePhoto")
+  aboutProfiles Profile[] @relation("ProfileAboutPhoto")
+  settings      SiteSettings[] @relation("SiteCv")
   certificates Certificate[] @relation("CertificateFile")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

@@ -39,14 +39,14 @@ export function makePublicService(db) {
     async project(slug) { return publicProject(await db.project.findFirst({ where: { slug, status: 'PUBLISHED' }, include: projectInclude })); },
     async portfolio() {
       const [profile, settings, projects, categories, topics, milestones, education, experience, certificates, socials] = await Promise.all([
-        db.profile.findFirst({ where: { id: 'main', status: 'PUBLISHED' }, include: { photo: true } }),
+        db.profile.findFirst({ where: { id: 'main', status: 'PUBLISHED' }, include: { photo: true, aboutPhoto: true } }),
         db.siteSettings.findUnique({ where: { id: 'main' }, include: { cv: true } }),
         db.project.findMany({ where: { status: 'PUBLISHED' }, include: projectInclude, orderBy: displayOrder, take: 100 }),
         db.skillCategory.findMany({ where: { status: 'PUBLISHED' }, include: { skills: { where: { status: 'PUBLISHED' }, orderBy: displayOrder } }, orderBy: displayOrder, take: 100 }),
         ...['learningTopic', 'journeyMilestone', 'education', 'experience', 'certificate', 'socialLink'].map(model => db[model].findMany({ where: { status: 'PUBLISHED', ...(model === 'certificate' ? { verified: true } : {}) }, orderBy: displayOrder, take: 100, ...(model === 'certificate' ? { include: { asset: true } } : {}) })),
       ]);
       return {
-        profile: profile?.status === 'PUBLISHED' ? { ...pick(profile, ['name', 'email', 'headline', 'heroTitle', 'introduction', 'aboutTitle', 'about', 'values', 'location', 'availability']), photo: publicAsset(profile.photo) } : null,
+        profile: profile?.status === 'PUBLISHED' ? { ...pick(profile, ['name', 'email', 'headline', 'heroTitle', 'introduction', 'aboutTitle', 'about', 'values', 'location', 'availability']), photo: publicAsset(profile.photo), aboutPhoto: publicAsset(profile.aboutPhoto) } : null,
         settings: settings ? { ...pick(settings, ['title', 'description', 'defaultTheme', 'showAvailability', 'sectionOrder', 'sectionCopy']), cv: settings.cvPublished ? publicAsset(settings.cv) : null } : null,
         projects: projects.map(publicProject).filter(Boolean),
         skillCategories: published(categories).map(category => ({ ...pick(category, ['id', 'slug', 'name', 'icon', 'sortOrder']), skills: published(category.skills).map(skill => pick(skill, ['id', 'name', 'sortOrder'])) })),

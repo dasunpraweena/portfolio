@@ -109,9 +109,9 @@ test('uploads photos privately and attaches them through the profile API', async
   const state = await mockWorkspace(page); await open(page, '/profile');
   await expect(page.getByLabel('Full name')).toHaveValue('Portfolio Owner');
   await page.screenshot({ path: 'test-results/review-profile-dark.png', fullPage: true });
-  await page.locator('input[type=file]').setInputFiles({ name: 'bad.svg', mimeType: 'image/svg+xml', buffer: Buffer.from('<svg/>') });
+  await page.locator('input[type=file]').first().setInputFiles({ name: 'bad.svg', mimeType: 'image/svg+xml', buffer: Buffer.from('<svg/>') });
   await expect(page.getByRole('alert')).toContainText('SVG is not supported'); expect(state.writes).toHaveLength(0);
-  await page.locator('input[type=file]').setInputFiles({ name: 'photo.png', mimeType: 'image/png', buffer: Buffer.from('mock image bytes') });
+  await page.locator('input[type=file]').first().setInputFiles({ name: 'photo.png', mimeType: 'image/png', buffer: Buffer.from('mock image bytes') });
   await expect(page.getByRole('img', { name: 'Selected uploaded image' })).toBeVisible();
   expect(state.writes).toHaveLength(1); expect(state.writes[0].resource).toBe('uploads'); expect(state.records.profile.photoAssetId).toBeNull();
   await page.getByRole('button', { name: 'Save changes' }).click();

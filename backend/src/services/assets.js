@@ -11,6 +11,7 @@ export async function publishedReferences(db, assetId) {
   const counts = await Promise.all([
     db.projectAsset.count({ where: { assetId, project: { status: 'PUBLISHED' } } }),
     db.profile.count({ where: { photoAssetId: assetId, status: 'PUBLISHED' } }),
+    db.profile.count({ where: { aboutPhotoAssetId: assetId, status: 'PUBLISHED' } }),
     db.siteSettings.count({ where: { cvAssetId: assetId, cvPublished: true } }),
     db.certificate.count({ where: { assetId, status: 'PUBLISHED', verified: true } }),
   ]);
@@ -19,6 +20,7 @@ export async function publishedReferences(db, assetId) {
 export async function allReferences(db, assetId) {
   const counts = await Promise.all([
     db.projectAsset.count({ where: { assetId } }), db.profile.count({ where: { photoAssetId: assetId } }),
+    db.profile.count({ where: { aboutPhotoAssetId: assetId } }),
     db.siteSettings.count({ where: { cvAssetId: assetId } }), db.certificate.count({ where: { assetId } }),
   ]);
   return counts.reduce((sum, value) => sum + value, 0);

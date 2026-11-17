@@ -161,12 +161,14 @@ test('maps API-relative screenshots, social URLs, and CV downloads to the backen
   const content = structuredClone(portfolio), collection = structuredClone(projects);
   content.settings.cv = { url: '/api/assets/cv', kind: 'PDF' };
   content.profile.photo = { url: '/api/assets/photo', kind: 'IMAGE' };
+  content.profile.aboutPhoto = { url: '/api/assets/about-photo', kind: 'IMAGE' };
   content.socialLinks[0].url = 'https://github.com/example';
   collection[0].screenshots = [{ url: '/api/assets/screen', caption: 'A supplied project screen', illustrative: false }];
   await mockApi(page, { content, collection });
   await page.route('**/api/assets/*', route => route.fulfill({ status: 200, headers: jsonResponse(null).headers, contentType: route.request().url().endsWith('/cv') ? 'application/pdf' : 'image/png', body: route.request().url().endsWith('/cv') ? Buffer.from('%PDF-1.4\n%%EOF') : Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64') }));
   await page.goto('/');
-  await expect(page.locator('.profile-photo')).toHaveAttribute('src', 'http://localhost:5432/api/assets/photo');
+  await expect(page.locator('#hero-portrait')).toHaveAttribute('src', 'http://localhost:5432/api/assets/photo');
+  await expect(page.locator('.profile-photo')).toHaveAttribute('src', 'http://localhost:5432/api/assets/about-photo');
   await expect(page.locator('.real-screenshot')).toHaveAttribute('src', 'http://localhost:5432/api/assets/screen');
   await expect(page.getByRole('link', { name: 'GitHub' }).first()).toHaveAttribute('href', 'https://github.com/example');
   await page.getByRole('button', { name: 'Download CV', exact: true }).click();

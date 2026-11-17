@@ -30,8 +30,8 @@ export default function Navbar() {
     for (const [id] of navigation) { const element = document.getElementById(id); if (element) observer.observe(element); }
     return () => observer.disconnect();
   }, [onHome, portfolioStatus]);
-  return <header className="site-header"><nav className="nav container" aria-label="Main navigation" ref={nav}>
-    <Link className="brand" to="/#home" aria-label="Dasun portfolio home"><span className="brand-mark">d p</span>dasun<span className="brand-dot">.</span></Link>
+  return <header className="site-header portfolio-header"><nav className="nav container" aria-label="Main navigation" ref={nav}>
+    <Link className="brand" to="/#home" aria-label="Dasun portfolio home"><span className="brand-mark" aria-hidden="true">dp</span><span className="nav-wordmark">Dasun<span className="brand-dot">.</span></span></Link>
     <div className={'nav-links' + (open ? ' open' : '')} id="nav-links">
       {navigation.map(([id, title]) => <Link key={id} to={'/#' + id} className={onHome && active === id ? 'active' : undefined} aria-current={onHome && active === id ? 'location' : undefined} onClick={() => setOpen(false)}>{title}</Link>)}
     </div>

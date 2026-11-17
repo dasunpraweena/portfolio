@@ -101,3 +101,77 @@
 @media(max-width:1000px){.learning-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.learning-card{padding:25px}.learning-card h3{font-size:23px}.learning-card>p{font-size:13px;min-height:44px}.learning-focus-chips span{font-size:10px}.learning-card-category{font-size:9px}.learning-status{font-size:10px}.learning-plan summary{font-size:11px}.journey-heading{align-items:start}.roadmap-legend{flex-direction:column;gap:10px;padding-top:10px;white-space:nowrap}.roadmap-map{padding:24px 24px 0}.roadmap-canvas{padding-right:0}.roadmap-track{display:none}.roadmap-stages{grid-template-columns:1fr;grid-template-rows:none;gap:23px}.roadmap-stages:before{content:'';position:absolute;top:28px;bottom:28px;left:19px;width:1px;background:repeating-linear-gradient(to bottom,#81965c 0 5px,transparent 5px 11px);opacity:.6}.roadmap-step:nth-child(n){grid-column:auto;grid-row:auto}.milestone-node{top:25px}.milestone-route-label{display:none}.milestone-card{margin:0 0 0 63px;height:auto;min-height:190px;padding:23px}.milestone-card h3{font-size:24px}.milestone-card h3 br{display:none}.milestone-card>p{font-size:12px;max-width:540px}.milestone-top{margin-bottom:13px}.milestone-category{font-size:9px}.milestone-top>.icon{height:21px;width:21px}.milestone-tags span{font-size:9px}.milestone-current .milestone-category:after{content:' · You are here'}.milestone-future .milestone-category:after{content:' · Next destination'}.milestone-link{font-size:11px}}
 @media(max-width:700px){.learning-section-heading{display:block;margin-bottom:28px}.learning-active-label{margin-top:21px;width:max-content;font-size:10px;padding:8px 12px}.learning-card-grid{grid-template-columns:1fr;gap:17px}.learning-card{padding:24px}.learning-card>p{min-height:0;font-size:13px;max-width:420px}.learning-card-top{margin-bottom:18px}.learning-card h3{font-size:25px}.learning-focus-chips{margin-bottom:22px}.learning-focus-chips span{font-size:10px;padding:5px 9px}.learning-plan summary{font-size:12px}.learning-plan p{font-size:12px}.learning-section-bottom{margin-top:23px;font-size:10px;align-items:start;flex-direction:column;gap:12px}.journey-heading{margin-bottom:26px}.roadmap-legend{flex-direction:row;gap:11px 17px;font-size:9px;margin-top:23px;padding:0}.roadmap-map{padding:19px 14px 0;border-radius:15px}.roadmap-map-caption{align-items:start;gap:13px;margin-bottom:24px;padding-bottom:17px}.roadmap-map-caption>span:first-child{font-size:7px;line-height:1.8;max-width:180px}.roadmap-map-caption>span:last-child{font-size:7px;white-space:nowrap;padding-top:1px}.roadmap-stages{gap:18px}.roadmap-stages:before{left:15px;top:29px;bottom:29px}.milestone-node{width:32px;height:32px;left:0;top:24px;font-size:10px}.milestone-card{margin-left:47px;min-height:0;padding:20px 17px}.milestone-card h3{font-size:20px;letter-spacing:-.5px;line-height:1.3;margin-bottom:12px}.milestone-card>p{font-size:11px;line-height:1.9;margin-bottom:17px}.milestone-top{gap:8px}.milestone-category{font-size:7px;letter-spacing:.7px;line-height:1.7}.milestone-top>.icon{width:17px;height:17px}.milestone-tags{gap:5px}.milestone-tags span{font-size:8px;padding:4px 6px}.milestone-link{font-size:9px;gap:6px;line-height:1.7}.roadmap-map-footer{margin-top:22px;align-items:start;padding-block:18px;gap:10px}.roadmap-map-footer p{font-size:9px;line-height:1.8}.roadmap-footer-spark{font-size:23px;padding-top:2px}.journey-evidence{padding-top:24px;align-items:start}.journey-evidence p{line-height:1.8}}
 @media print{.learning-card-grid{grid-template-columns:repeat(2,1fr)}.learning-card{break-inside:avoid}.learning-card>p{min-height:0}.learning-plan{display:none}.roadmap-track,.roadmap-map-caption{display:none}.roadmap-stages{grid-template-columns:repeat(2,1fr);grid-template-rows:none;gap:18px}.roadmap-step:nth-child(n){grid-column:auto;grid-row:auto;break-inside:avoid}.milestone-card{height:230px}.milestone-route-label{display:none}.roadmap-map{padding:20px}.roadmap-stages:before{display:none}.learning-section,.journey-section{break-inside:auto}.milestone-link{display:none}}
+
+/* ===== Profile portrait v2: large arch, layered composition ===== */
+@media(min-width:701px){.hero-main{grid-template-columns:1fr 1fr}}
+.hero .portrait-hero{height:auto;min-height:600px;display:grid;place-items:center;transform:none;padding:20px 0 30px}
+.portrait-card{--photo-pos:center 20%;--shape:150px 28px 150px 28px;position:relative;width:min(100%,440px);margin:0;isolation:isolate}
+/* oversized outlined initials peeking out behind the arch */
+.portrait-word{position:absolute;left:-120px;top:-30px;z-index:-3;font-size:clamp(200px,22vw,330px);font-weight:700;letter-spacing:-.1em;line-height:.8;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--lime) 38%,transparent);user-select:none;pointer-events:none}
+/* lime plate + outline arch */
+.portrait-card::before{content:"";position:absolute;inset:34px -26px -26px 34px;border-radius:var(--shape);background:var(--lime);z-index:-2}
+.portrait-card::after{content:"";position:absolute;inset:-18px 30px 30px -18px;border:1px solid var(--muted);opacity:.45;border-radius:var(--shape);z-index:-1}
+.portrait-frame{position:relative;aspect-ratio:4 / 5;overflow:hidden;border-radius:var(--shape);background:radial-gradient(ellipse at 50% 18%,#aacc5940,transparent 70%),var(--panel);border:1px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow)}
+.portrait-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--photo-pos)}
+.portrait-frame::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(to top,#0a0e08b3,transparent);pointer-events:none;opacity:0;transition:opacity .3s}
+.portrait-frame:has(img:not([hidden]))::after{opacity:1}
+.portrait-placeholder{display:flex;flex-direction:column;align-items:center;gap:20px;padding:0 24px;text-align:center}
+.portrait-initials{font-size:clamp(90px,13vw,150px);line-height:.9;letter-spacing:-.09em;font-weight:700;color:var(--text)}
+.portrait-initials span{color:var(--lime)}
+.portrait-add{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:9px 18px;border:1px dashed var(--muted);border-radius:100px;background:none;color:var(--muted);font-size:12px;font-weight:600;transition:color .2s,border-color .2s,background .2s}
+.portrait-add:hover{color:var(--text);border-color:var(--lime);background:#d3f96b14}
+.portrait-add .icon{width:15px;height:15px}
+.portrait-frame:has(img:not([hidden])) .portrait-placeholder{display:none}
+.portrait-frame.is-drop{outline:2px dashed var(--lime);outline-offset:-12px}
+/* rotating badge on the shoulder of the arch */
+.portrait-badge{position:absolute;right:-48px;top:70px;width:128px;height:128px;border-radius:50%;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--text);z-index:3}
+.portrait-badge svg.ring{position:absolute;inset:0;width:100%;height:100%;fill:currentColor}
+.portrait-badge .core{width:48px;height:48px;border-radius:50%;background:var(--lime);color:var(--accent-ink);display:grid;place-items:center;font:700 16px/1 var(--mono);letter-spacing:-1px}
+/* tilted tech sticker on the plate */
+.portrait-sticker{position:absolute;right:-30px;bottom:6px;z-index:3;transform:rotate(-5deg);background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 15px;font:12px/1.3 var(--mono);box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+.portrait-sticker i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #d3f96b1c}
+/* name plate */
+.portrait-card figcaption{position:absolute;left:-34px;bottom:34px;z-index:3;display:flex;flex-direction:column;gap:2px;padding:14px 20px 14px 18px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--lime);border-radius:14px;box-shadow:var(--shadow)}
+.portrait-card figcaption strong{font-size:17px;letter-spacing:-.3px}
+.portrait-card figcaption span{font-size:11.5px;color:var(--muted);line-height:1.45}
+.portrait-replace{position:absolute;right:14px;top:16px;z-index:2;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid #ffffff40;background:#0a0e0899;color:#fff;backdrop-filter:blur(8px);opacity:0;transition:opacity .2s}
+.portrait-replace .icon{width:16px;height:16px}
+.portrait-frame:has(img:not([hidden])):hover .portrait-replace,.portrait-replace:focus-visible{opacity:1}
+@media(hover:none){.portrait-frame:has(img:not([hidden])) .portrait-replace{opacity:.9}}
+/* Shape options: set data-shape on <figure class="portrait-card" data-shape="leaf"> to leaf | blob | squircle | circle */
+.portrait-card[data-shape=leaf]{--shape:150px 28px 150px 28px}
+.portrait-card[data-shape=blob]{--shape:62% 38% 55% 45% / 52% 46% 54% 48%}
+.portrait-card[data-shape=squircle]{--shape:34%/28%}
+.portrait-card[data-shape=circle]{--shape:50%}
+.portrait-card[data-shape=circle] .portrait-frame{aspect-ratio:1 / 1}
+@keyframes portrait-rise{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+@keyframes portrait-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:no-preference){.portrait-frame{animation:portrait-rise .95s cubic-bezier(.2,.7,.2,1) both}.portrait-badge svg.ring{animation:portrait-spin 22s linear infinite}}
+@media(max-width:1150px){.portrait-card{width:min(100%,390px)}.portrait-badge{right:-34px}.portrait-word{left:-80px}}
+@media(max-width:900px){.portrait-word{display:none}.hero .portrait-hero{min-height:0;padding:20px 40px 36px}.portrait-card{width:min(100%,380px)}}
+@media(max-width:700px){.hero .portrait-hero{padding:24px 34px 34px}.portrait-card{width:min(100%,320px)}.portrait-word{display:block;left:-30px;top:-20px;font-size:190px}.portrait-badge{width:104px;height:104px;right:-28px;top:52px}.portrait-badge .core{width:40px;height:40px;font-size:14px}.portrait-card figcaption{left:-20px;bottom:22px}.portrait-card::before{inset:24px -16px -16px 24px}.portrait-sticker{right:-8px;bottom:-24px;font-size:11px}}
+
+.portfolio-header{height:88px;background:none;border:0;backdrop-filter:none;padding-top:12px}
+.portfolio-header .nav{height:64px;position:relative;padding:0 12px 0 15px;gap:12px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--panel) 90%,transparent);backdrop-filter:blur(18px);box-shadow:0 12px 32px #10150b18}
+.portfolio-header .brand{gap:9px;flex:none}
+.portfolio-header .brand-mark{border-radius:10px;letter-spacing:-1px}
+.portfolio-header .nav-links{gap:2px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.portfolio-header .nav-links a{padding:6px 10px;border-radius:999px;white-space:nowrap}
+.portfolio-header .nav-links a:hover{background:var(--panel2)}
+.portfolio-header .nav-links a.active{background:var(--lime);color:#20300c;font-weight:700}
+.portfolio-header .nav-actions{gap:7px;flex:none}
+.portfolio-header .nav-actions .btn{display:inline-flex;padding:8px 10px;min-height:34px;border-radius:999px;white-space:nowrap}
+.portfolio-header .nav-actions .round-btn{width:34px;height:34px}
+.portfolio-header .nav-actions .icon{width:15px;height:15px}
+@media(max-width:880px){
+ .portfolio-header .nav-links{display:none;position:absolute;inset:calc(100% + 8px) 0 auto;padding:10px;background:var(--panel);border-radius:16px;box-shadow:var(--shadow)}
+ .portfolio-header .nav-links.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .portfolio-header .nav-links a{display:block;padding:9px 12px;font-size:13px}
+ .portfolio-header .menu-btn{display:grid}
+}
+@media(max-width:700px){
+ .portfolio-header{height:74px;padding-top:8px}
+ .portfolio-header .nav{height:54px;padding:0 8px}
+ .portfolio-header .nav-actions .btn span{display:none}
+ .portfolio-header .nav-actions .btn{width:34px;padding:0}
+}

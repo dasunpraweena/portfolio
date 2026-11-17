@@ -40,7 +40,10 @@ export function createDraft(resource, record = null) {
     draft.technologyIds = record?.technologies?.map(item => item.technologyId) || [];
     draft.screenshots = record?.screenshots?.map(item => ({ assetId: item.assetId, caption: item.caption || '', illustrative: item.illustrative, sortOrder: item.sortOrder })) || [];
   }
-  if (resource === 'profile') draft.photoAssetId = record?.photoAssetId || null;
+  if (resource === 'profile') {
+    draft.photoAssetId = record?.photoAssetId || null;
+    draft.aboutPhotoAssetId = record?.aboutPhotoAssetId || null;
+  }
   if (resource === 'certificates') draft.assetId = record?.assetId || null;
   if (resource === 'settings') { draft.cvAssetId = record?.cvAssetId || null; draft.cvPublished = record?.cvPublished || false; draft.sectionOrder = record?.sectionOrder || [...sectionOptions.slice(0, 6), 'contact']; draft.sectionCopy = structuredClone(record?.sectionCopy || {}); }
   return draft;
@@ -72,7 +75,10 @@ export function serializeDraft(resource, draft, { creating = false } = {}) {
     result.screenshots = (draft.screenshots || []).map((item, sortOrder) => ({ assetId: item.assetId, caption: item.caption?.trim() || null, illustrative: Boolean(item.illustrative), sortOrder }));
     if (creating) result.status = 'DRAFT';
   }
-  if (resource === 'profile') result.photoAssetId = draft.photoAssetId || null;
+  if (resource === 'profile') {
+    result.photoAssetId = draft.photoAssetId || null;
+    result.aboutPhotoAssetId = draft.aboutPhotoAssetId || null;
+  }
   if (resource === 'certificates') { result.assetId = draft.assetId || null; if (result.status === 'PUBLISHED' && !result.verified) errors.verified = 'Verify this completed certificate before publishing.'; }
   if (resource === 'settings') {
     Object.assign(result, { sectionOrder: draft.sectionOrder, sectionCopy: draft.sectionCopy, cvAssetId: draft.cvAssetId || null, cvPublished: Boolean(draft.cvPublished) });

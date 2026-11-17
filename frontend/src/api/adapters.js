@@ -19,7 +19,7 @@ export function mapPortfolio(data, resolveUrl) {
   return {
     ...data, copy,
     settings: data.settings ? { ...data.settings, cv: asset(data.settings.cv) } : null,
-    profile: data.profile ? { ...data.profile, heroTitle: textList(data.profile.heroTitle), aboutTitle: textList(data.profile.aboutTitle), about: textList(data.profile.about), values: textList(data.profile.values), photo: asset(data.profile.photo), socials, cv: { url: asset(data.settings?.cv)?.url || null, fileName: 'CV.pdf' } } : null,
+    profile: data.profile ? { ...data.profile, heroTitle: textList(data.profile.heroTitle), aboutTitle: textList(data.profile.aboutTitle), about: textList(data.profile.about), values: textList(data.profile.values), photo: asset(data.profile.photo), aboutPhoto: asset(data.profile.aboutPhoto), socials, cv: { url: asset(data.settings?.cv)?.url || null, fileName: 'CV.pdf' } } : null,
     skillCategories: list(data.skillCategories).map(group => ({ ...group, items: list(group.skills).map(skill => skill.name).filter(Boolean) })),
     learningTopics: list(data.learningTopics).map(topic => ({ ...topic, id: topic.slug, focus: textList(topic.focus) })),
     milestones: list(data.milestones).map(milestone => {

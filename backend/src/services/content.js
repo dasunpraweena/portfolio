@@ -8,7 +8,7 @@ const include = resource => resource === 'projects' ? projectInclude : {};
 export async function referencedAssetIds(tx, resource, row) {
   if (!row) return [];
   if (resource === 'projects') return (await tx.projectAsset.findMany({ where: { projectId: row.id }, select: { assetId: true } })).map(item => item.assetId);
-  return [row.photoAssetId, row.cvAssetId, row.assetId].filter(Boolean);
+  return [row.photoAssetId, row.aboutPhotoAssetId, row.cvAssetId, row.assetId].filter(Boolean);
 }
 export function makeContentService(db, assets) {
   async function validateRelated(tx, resource, data, existing = {}) {
@@ -16,6 +16,7 @@ export function makeContentService(db, assets) {
     const files = [];
     if (resource === 'projects' && data.screenshots) files.push(...data.screenshots.map(item => [item.assetId, 'IMAGE']));
     if (resource === 'profile' && data.photoAssetId) files.push([data.photoAssetId, 'IMAGE']);
+    if (resource === 'profile' && data.aboutPhotoAssetId) files.push([data.aboutPhotoAssetId, 'IMAGE']);
     if (resource === 'settings' && data.cvAssetId) files.push([data.cvAssetId, 'PDF']);
     if (resource === 'certificates' && data.assetId) files.push([data.assetId, null]);
     for (const [id, kind] of files) {

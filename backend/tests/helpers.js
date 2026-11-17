@@ -29,6 +29,7 @@ export function fakeDatabase(initial = {}) {
       result.screenshots = db.rows('projectAsset').filter(item => item.projectId === row.id).map(item => ({ ...item, asset: db.rows('asset').find(value => value.id === item.assetId) }));
     }
     if (include?.photo) result.photo = db.rows('asset').find(value => value.id === row.photoAssetId) || null;
+    if (include?.aboutPhoto) result.aboutPhoto = db.rows('asset').find(value => value.id === row.aboutPhotoAssetId) || null;
     if (include?.cv) result.cv = db.rows('asset').find(value => value.id === row.cvAssetId) || null;
     if (include?.asset) result.asset = db.rows('asset').find(value => value.id === row.assetId) || null;
     if (include?.skills) result.skills = db.rows('skill').filter(value => value.categoryId === row.id && matches(value, include.skills.where));
