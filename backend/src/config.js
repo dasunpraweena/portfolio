@@ -52,6 +52,6 @@ export function pgOptions(connectionString, env = process.env) {
   const url = new URL(connectionString);
   // node-pg SSL query parameters can override an explicit TLS configuration.
   for (const field of ['schema', 'sslmode', 'sslcert', 'sslkey', 'sslrootcert', 'ssl', 'uselibpqcompat']) url.searchParams.delete(field);
-  return { connectionString: url.toString(), max: 5, connectionTimeoutMillis: 10000, idleTimeoutMillis: 30000,
+  return { connectionString: url.toString(), max: 3, connectionTimeoutMillis: 30000, idleTimeoutMillis: 30000,
     ssl: { rejectUnauthorized: true, ...(env.DATABASE_SSL_CA_FILE ? { ca: fs.readFileSync(env.DATABASE_SSL_CA_FILE, 'utf8') } : {}) } };
 }
