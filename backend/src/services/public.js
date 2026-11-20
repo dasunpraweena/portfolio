@@ -38,23 +38,27 @@ export function makePublicService(db) {
     },
     async project(slug) { return publicProject(await db.project.findFirst({ where: { slug, status: 'PUBLISHED' }, include: projectInclude })); },
     async portfolio() {
-      const [profile, settings, projects, categories, topics, milestones, education, experience, certificates, socials] = await Promise.all([
+      const [profile, settings, projects, categories, certCategories, topics, milestones, education, experience, certificates, socials] = await Promise.all([
         db.profile.findFirst({ where: { id: 'main', status: 'PUBLISHED' }, include: { photo: true, aboutPhoto: true } }),
         db.siteSettings.findUnique({ where: { id: 'main' }, include: { cv: true } }),
         db.project.findMany({ where: { status: 'PUBLISHED' }, include: projectInclude, orderBy: displayOrder, take: 100 }),
         db.skillCategory.findMany({ where: { status: 'PUBLISHED' }, include: { skills: { where: { status: 'PUBLISHED' }, orderBy: displayOrder } }, orderBy: displayOrder, take: 100 }),
-        ...['learningTopic', 'journeyMilestone', 'education', 'experience', 'certificate', 'socialLink'].map(model => db[model].findMany({ where: { status: 'PUBLISHED', ...(model === 'certificate' ? { verified: true } : {}) }, orderBy: displayOrder, take: 100, ...(model === 'certificate' ? { include: { asset: true } } : {}) })),
+        db.certificateCategory.findMany({ where: { visible: true }, orderBy: displayOrder, take: 100 }),
+        ...['learningTopic', 'journeyMilestone', 'education', 'experience', 'certificate', 'socialLink'].map(model => db[model].findMany({ where: { status: 'PUBLISHED', ...(model === 'certificate' ? { showOnPortfolio: true } : {}) }, orderBy: displayOrder, take: 100, ...(model === 'certificate' ? { include: { asset: true, category: true } } : {}) })),
       ]);
+      const visibleCertCategories = certCategories.filter(cat => cat.visible !== false);
+      const visibleCertificates = published(certificates).filter(row => row.showOnPortfolio !== false && (!row.categoryId || row.category?.visible));
       return {
         profile: profile?.status === 'PUBLISHED' ? { ...pick(profile, ['name', 'email', 'headline', 'heroTitle', 'introduction', 'aboutTitle', 'about', 'values', 'location', 'availability']), photo: publicAsset(profile.photo), aboutPhoto: publicAsset(profile.aboutPhoto) } : null,
         settings: settings ? { ...pick(settings, ['title', 'description', 'defaultTheme', 'showAvailability', 'sectionOrder', 'sectionCopy']), cv: settings.cvPublished ? publicAsset(settings.cv) : null } : null,
         projects: projects.map(publicProject).filter(Boolean),
         skillCategories: published(categories).map(category => ({ ...pick(category, ['id', 'slug', 'name', 'icon', 'sortOrder']), skills: published(category.skills).map(skill => pick(skill, ['id', 'name', 'sortOrder'])) })),
+        certificateCategories: visibleCertCategories.map(category => pick(category, ['id', 'slug', 'name', 'sortOrder'])),
         learningTopics: published(topics).map(row => pick(row, ['slug', 'title', 'category', 'icon', 'tone', 'summary', 'focus', 'goal', 'learningStatus', 'sortOrder'])),
         milestones: published(milestones).map(row => pick(row, ['slug', 'title', 'description', 'category', 'icon', 'routeLabel', 'stage', 'tags', 'linkSection', 'linkLabel', 'occurredAt', 'sortOrder'])),
         education: published(education).map(row => pick(row, ['slug', 'institution', 'faculty', 'degree', 'studyStatus', 'coursework', 'achievements', 'startDate', 'endDate', 'sortOrder'])),
         experience: published(experience).map(row => pick(row, ['slug', 'title', 'category', 'organisation', 'description', 'startDate', 'endDate', 'sortOrder'])),
-        certificates: published(certificates).filter(row => row.verified).map(row => ({ ...pick(row, ['slug', 'title', 'issuer', 'completedAt', 'credentialId', 'verificationUrl', 'sortOrder']), file: publicAsset(row.asset) })),
+        certificates: visibleCertificates.map(row => ({ ...pick(row, ['slug', 'title', 'issuer', 'categoryId', 'description', 'completedAt', 'credentialId', 'verificationUrl', 'verified', 'skills', 'tools', 'duration', 'projectUrl', 'featured', 'sortOrder']), categoryName: row.category?.name || null, file: publicAsset(row.asset) })),
         socialLinks: published(socials).map(row => pick(row, ['platform', 'url', 'sortOrder'])),
       };
     },
