@@ -27,7 +27,8 @@ export function mapPortfolio(data, resolveUrl) {
       return { ...milestone, tags: textList(milestone.tags), titleLines: lines?.join('') === milestone.title ? lines : [milestone.title] };
     }),
     education: list(data.education), experience: list(data.experience),
-    certificates: list(data.certificates).map(certificate => ({ ...certificate, verificationUrl: resolveUrl(certificate.verificationUrl), file: asset(certificate.file) })),
+    certificateCategories: list(data.certificateCategories),
+    certificates: list(data.certificates).map(certificate => ({ ...certificate, skills: textList(certificate.skills), tools: textList(certificate.tools), verificationUrl: resolveUrl(certificate.verificationUrl), projectUrl: resolveUrl(certificate.projectUrl), file: asset(certificate.file) })),
     socialLinks: list(data.socialLinks).map(link => ({ ...link, url: resolveUrl(link.url) })),
   };
 }
