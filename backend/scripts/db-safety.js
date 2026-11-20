@@ -34,7 +34,7 @@ export async function inspectDatabase({ write = false, migration = false, env = 
         else if (!fs.existsSync(file) || createHash('sha256').update(fs.readFileSync(file)).digest('hex') !== record.checksum) problems.push(`Migration history conflict: ${record.migration_name}. Preserve the database and recover the original migration files.`);
       }
     }
-    const expected = new Set(['_prisma_migrations', 'Profile', 'SiteSettings', 'Project', 'Technology', 'ProjectTechnology', 'ProjectAsset', 'SkillCategory', 'Skill', 'LearningTopic', 'JourneyMilestone', 'Education', 'Experience', 'Certificate', 'SocialLink', 'ContactMessage', 'Asset']);
+    const expected = new Set(['_prisma_migrations', 'Profile', 'SiteSettings', 'Project', 'Technology', 'ProjectTechnology', 'ProjectAsset', 'SkillCategory', 'Skill', 'LearningTopic', 'JourneyMilestone', 'Education', 'Experience', 'CertificateCategory', 'Certificate', 'SocialLink', 'ContactMessage', 'Asset']);
     if (app.some(table => !expected.has(table.tablename))) problems.push('Unrecognized tables exist in the portfolio schema. Review their ownership and migration history before changing this schema.');
     if (tables.some(table => table.schemaname === 'public') && env.DB_EXISTING_TABLES_REVIEWED !== 'true') problems.push('Existing public tables were found. Review the list and any existing application ownership before setting DB_EXISTING_TABLES_REVIEWED=true. These migrations only manage portfolio.');
     await client.query('COMMIT');
