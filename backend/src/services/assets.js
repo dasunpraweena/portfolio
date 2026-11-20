@@ -13,7 +13,7 @@ export async function publishedReferences(db, assetId) {
     db.profile.count({ where: { photoAssetId: assetId, status: 'PUBLISHED' } }),
     db.profile.count({ where: { aboutPhotoAssetId: assetId, status: 'PUBLISHED' } }),
     db.siteSettings.count({ where: { cvAssetId: assetId, cvPublished: true } }),
-    db.certificate.count({ where: { assetId, status: 'PUBLISHED', verified: true } }),
+    db.certificate.count({ where: { assetId, status: 'PUBLISHED', showOnPortfolio: true, OR: [{ categoryId: null }, { category: { visible: true } }] } }),
   ]);
   return counts.reduce((sum, value) => sum + value, 0);
 }
