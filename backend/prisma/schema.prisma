@@ -230,21 +230,42 @@ model Experience {
   @@schema("portfolio")
 }
 
+model CertificateCategory {
+  id           String        @id @default(uuid()) @db.Uuid
+  slug         String        @unique
+  name         String        @unique
+  visible      Boolean       @default(true)
+  sortOrder    Int           @default(0)
+  certificates Certificate[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  @@schema("portfolio")
+}
+
 model Certificate {
-  id              String @id @default(uuid()) @db.Uuid
-  slug            String @unique
+  id              String               @id @default(uuid()) @db.Uuid
+  slug            String               @unique
   title           String
   issuer          String
-  completedAt     DateTime? @db.Date
+  categoryId      String?              @db.Uuid
+  category        CertificateCategory? @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  description     String?
+  completedAt     DateTime?            @db.Date
   credentialId    String?
   verificationUrl String?
-  verified        Boolean @default(false)
-  assetId         String? @db.Uuid
-  asset           Asset? @relation("CertificateFile", fields: [assetId], references: [id], onDelete: Restrict)
-  status          PublicationStatus @default(DRAFT)
-  sortOrder       Int @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  verified        Boolean              @default(false)
+  skills          String[]             @default([])
+  tools           String[]             @default([])
+  duration        String?
+  projectUrl      String?
+  featured        Boolean              @default(false)
+  showOnPortfolio Boolean              @default(true)
+  assetId         String?              @db.Uuid
+  asset           Asset?               @relation("CertificateFile", fields: [assetId], references: [id], onDelete: Restrict)
+  status          PublicationStatus    @default(DRAFT)
+  sortOrder       Int                  @default(0)
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
   @@schema("portfolio")
 }
 
