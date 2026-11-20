@@ -10,10 +10,12 @@ export const config = { PORT: 3001, NODE_ENV: 'test', ADMIN_USER_IDS: [ADMIN], F
 export function fakeDatabase(initial = {}) {
   const state = structuredClone(initial);
   const db = { rows: model => state[model] ||= [], $executeRaw: async () => 1 };
-  const models = ['profile','siteSettings','project','technology','projectTechnology','projectAsset','skillCategory','skill','learningTopic','journeyMilestone','education','experience','certificate','socialLink','contactMessage','asset'];
+  const models = ['profile','siteSettings','project','technology','projectTechnology','projectAsset','skillCategory','skill','learningTopic','journeyMilestone','education','experience','certificateCategory','certificate','socialLink','contactMessage','asset'];
   const matches = (row, where = {}, model) => Object.entries(where).every(([key, expected]) => {
+    if (key === 'OR' && Array.isArray(expected)) return expected.some(clause => matches(row, clause, model));
     if (key === 'project' && model === 'projectAsset') return matches(db.rows('project').find(value => value.id === row.projectId) || {}, expected);
     if (key === 'category' && model === 'skill' && typeof expected === 'object') return matches(db.rows('skillCategory').find(value => value.id === row.categoryId) || {}, expected);
+    if (key === 'category' && model === 'certificate' && typeof expected === 'object') return matches(db.rows('certificateCategory').find(value => value.id === row.categoryId) || {}, expected);
     if (key === 'categoryId_name') return row.categoryId === expected.categoryId && row.name === expected.name;
     if (expected && typeof expected === 'object' && !(expected instanceof Date)) {
       if ('in' in expected) return expected.in.includes(row[key]);
@@ -32,6 +34,7 @@ export function fakeDatabase(initial = {}) {
     if (include?.aboutPhoto) result.aboutPhoto = db.rows('asset').find(value => value.id === row.aboutPhotoAssetId) || null;
     if (include?.cv) result.cv = db.rows('asset').find(value => value.id === row.cvAssetId) || null;
     if (include?.asset) result.asset = db.rows('asset').find(value => value.id === row.assetId) || null;
+    if (include?.category && model === 'certificate') result.category = db.rows('certificateCategory').find(value => value.id === row.categoryId) || null;
     if (include?.skills) result.skills = db.rows('skill').filter(value => value.categoryId === row.id && matches(value, include.skills.where));
     return result;
   };
