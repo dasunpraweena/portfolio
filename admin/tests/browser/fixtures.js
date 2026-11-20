@@ -13,7 +13,7 @@ export async function mockWorkspace(page, { signedIn = true, denied = false, del
     projects: [structuredClone(project)], technologies: [{ id: id(20), name: 'React' }],
     'skill-categories': [{ id: id(30), slug: 'development', name: 'Development', icon: 'code', status: 'PUBLISHED', sortOrder: 0 }],
     skills: [{ id: id(31), categoryId: id(30), name: 'JavaScript', status: 'PUBLISHED', sortOrder: 0 }],
-    education: [], experience: [], certificates: [], 'learning-topics': [], milestones: [], 'social-links': [], assets: [],
+    education: [], experience: [], 'certificate-categories': [{ id: id(35), slug: 'cybersecurity', name: 'Cybersecurity', visible: true, sortOrder: 0 }], certificates: [], 'learning-topics': [], milestones: [], 'social-links': [], assets: [],
     messages: [{ id: id(40), name: 'Visitor', email: 'visitor@example.test', subject: 'A collaboration', message: 'Let us build something useful.', readAt: null, createdAt: now }],
     profile: { id: 'main', name: 'Portfolio Owner', email: 'owner@example.test', headline: 'Software engineering student', heroTitle: ['Building useful things.'], introduction: 'An actual introduction for a test fixture.', aboutTitle: ['About me'], about: ['A first paragraph.'], values: ['Curiosity'], location: 'Sri Lanka', availability: 'Open to collaboration', status: 'PUBLISHED', photoAssetId: null, aboutPhotoAssetId: null, updatedAt: now },
     settings: { id: 'main', title: 'My Portfolio', description: 'A student portfolio.', defaultTheme: 'dark', showAvailability: true, internalNotes: null, sectionOrder: ['home', 'work', 'about', 'contact'], sectionCopy: { work: ['Work title', '', 'Third text'] }, cvAssetId: null, cvPublished: false, updatedAt: now },
