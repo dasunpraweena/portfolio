@@ -3,6 +3,7 @@ import { CvButton } from '../components/ContentActions';
 import { Lines } from '../components/FormattedText';
 import ApiState from '../components/ApiState';
 import Icon from '../components/Icon';
+import CertificatesSection from '../components/CertificatesSection';
 
 function MilestoneIcon({ milestone, portfolio }) {
   const { setDialog } = usePortfolio();
@@ -14,7 +15,7 @@ function MilestoneIcon({ milestone, portfolio }) {
 
 export default function Journey() {
   const { copy, portfolio } = usePortfolio();
-  const { milestones, certificates } = portfolio;
+  const { milestones } = portfolio;
   return <section className="section journey-section" id="journey" aria-labelledby="journey-heading"><div className="container">
     <div className="section-heading journey-heading"><div><p className="section-label"><span>{copy.journey[0]}</span>{copy.journey[1]}</p><h2 id="journey-heading">{copy.journey[2]}<br />{copy.journey[3]}</h2><p className="section-subtitle">{copy.journey[4]}</p></div><div className="roadmap-legend"><span><i></i>{copy.journey[5]}</span><span><i className="legend-now"></i>{copy.journey[6]}</span><span><i className="legend-next"></i>{copy.journey[7]}</span></div></div>
     {milestones.length ? <div className="roadmap-map"><div className="roadmap-map-caption"><span className="mono">{copy.journey[8]}</span><span className="mono">{milestones.length === 6 ? copy.journey[9] : `Follow 01 → ${String(milestones.length).padStart(2, '0')}`}</span></div>
@@ -29,8 +30,7 @@ export default function Journey() {
         </li>)}</ol>
       </div><div className="roadmap-map-footer"><span className="roadmap-footer-spark">{copy.journey[55]}</span><p>{copy.journey[56]}</p></div>
     </div> : <ApiState compact title="No journey milestones published yet." />}
-    <div className="journey-evidence"><Icon name="award" /><div><h3>{copy.journey[57] || 'Certifications & achievements'}</h3>{!certificates.length && <p>{copy.journey[58] || 'No verified certificates published yet.'}</p>}</div></div>
-    {certificates.length > 0 && <div className="certificate-list">{certificates.map(certificate => <article className="certificate-record" key={certificate.slug}><h4>{certificate.title}</h4><p className="muted">{[certificate.issuer, certificate.completedAt && new Date(certificate.completedAt).toLocaleDateString(), certificate.credentialId].filter(Boolean).join(' · ')}</p><div className="project-links">{certificate.verificationUrl && <a href={certificate.verificationUrl} target="_blank" rel="noopener noreferrer">Verify credential <Icon name="up-right" /></a>}{certificate.file && <a href={certificate.file.url} target="_blank" rel="noopener noreferrer">View certificate <Icon name="file" /></a>}</div></article>)}</div>}
+    <CertificatesSection />
     <div className="resume-banner"><div><h3>{copy.journey[59]}</h3><p>{copy.journey[60]}</p></div><CvButton label="View / Download CV" /></div>
   </div></section>;
 }
