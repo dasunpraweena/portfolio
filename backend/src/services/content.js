@@ -8,6 +8,7 @@ const include = resource => resource === 'projects' ? projectInclude : {};
 export async function referencedAssetIds(tx, resource, row) {
   if (!row) return [];
   if (resource === 'projects') return (await tx.projectAsset.findMany({ where: { projectId: row.id }, select: { assetId: true } })).map(item => item.assetId);
+  if (resource === 'certificate-categories') return (await tx.certificate.findMany({ where: { categoryId: row.id, assetId: { not: null } }, select: { assetId: true } })).map(item => item.assetId).filter(Boolean);
   return [row.photoAssetId, row.aboutPhotoAssetId, row.cvAssetId, row.assetId].filter(Boolean);
 }
 export function makeContentService(db, assets) {
@@ -27,7 +28,8 @@ export function makeContentService(db, assets) {
       if (await tx.technology.count({ where: { id: { in: data.technologyIds } } }) !== data.technologyIds.length) throw new ApiError(422, 'INVALID_TECHNOLOGY', 'A selected technology does not exist.');
     }
     if (resource === 'skills' && data.categoryId && !(await tx.skillCategory.findUnique({ where: { id: data.categoryId } }))) throw new ApiError(422, 'INVALID_CATEGORY', 'This skill category does not exist.');
-    if (resource === 'certificates' && merged.status === 'PUBLISHED' && !merged.verified) throw new ApiError(422, 'UNVERIFIED_CERTIFICATE', 'Verify the certificate before publishing it.');
+    if (resource === 'certificates' && data.categoryId && !(await tx.certificateCategory.findUnique({ where: { id: data.categoryId } }))) throw new ApiError(422, 'INVALID_CATEGORY', 'This certificate category does not exist.');
+    if (resource === 'certificates' && merged.verified && !merged.verificationUrl) throw new ApiError(422, 'VERIFICATION_URL_REQUIRED', 'Add an official verification URL before marking this verified.');
     if (resource === 'settings' && merged.cvPublished && !merged.cvAssetId) throw new ApiError(422, 'CV_REQUIRED', 'Attach a real PDF before publishing the CV.');
     if (merged.startDate && merged.endDate && new Date(merged.startDate) > new Date(merged.endDate)) throw new ApiError(422, 'INVALID_DATES', 'The end date must not precede the start date.');
   }
@@ -65,6 +67,7 @@ export function makeContentService(db, assets) {
         const model = tx[entity(resource)];
         const old = await model.findUnique({ where: { id } });
         if (!old) throw new ApiError(404, 'NOT_FOUND', 'This record does not exist.');
+        if (resource === 'certificate-categories' && await tx.certificate.count({ where: { categoryId: id } })) throw new ApiError(409, 'CATEGORY_IN_USE', 'Move certificates to another category before deleting a category that contains them.');
         const ids = await referencedAssetIds(tx, resource, old);
         await model.delete({ where: { id } });
         for (const assetId of ids) await assets.reconcile(tx, assetId);
